@@ -4,7 +4,7 @@
 	window.onload = function() {
 		var chart = new CanvasJS.Chart("chartContainer", {
 			title: {
-				text: "Himpunan Fuzzy"
+				text: "Derajat Keanggotaan"
 			},
 			data: [
 			<?php foreach ($himpunan as $item) { ?>
@@ -64,6 +64,7 @@
 						<th>No</th>
 						<th>Nama Himpunan</th>
 						<th>Fungsi</th>
+						<th>Action</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -73,6 +74,13 @@
 						<td>{{$i}}</td>
 						<td style="text-transform:capitalize;">{{$item->nama_himpunan}}</td>
 						<td style="text-transform:capitalize;">{{$item->fungsi}}</td>
+						<td>
+							<form action="{{route('admin_utama_delete_himpunan', $item->id)}}" method="POST">
+								<button class="btn btn-danger">Hapus</button>
+								{{csrf_field()}}
+								<input type="hidden" name="_method" value="DELETE">
+							</form>
+						</td>
 					</tr>
 					<?php $i++; ?>
 					@endforeach

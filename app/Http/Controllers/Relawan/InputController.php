@@ -61,12 +61,13 @@ class InputController extends Controller
                 $temp = 0;
                 $a = 0;
                 foreach ($detail_aturan as $item_detail) {
+                    
+                        $titik = Titik::where('himpunan_id',$item_detail->id_himpunan)->orderBy('urutan','ASC')->get();
                     if($item_detail->status == 0){
 
                         $detail_data_input = Detail_data_input::where('data_input_id',$input_baru->id)->where('variable_id',$item_detail->variable_id)->first();
                         $inputan = $detail_data_input->inputan;
-                        $titik = Titik::where('himpunan_id',$item_detail->id_himpunan)->orderBy('urutan','ASC')->get();
-
+                        
                         if($item_detail->fungsi == 'trapesium'){
                             if($inputan>$titik[0]->titikx && $inputan<$titik[1]->titikx){
                                 $hasil_temp = ($inputan-$titik[0]->titikx) / ($titik[1]->titikx-$titik[0]->titikx);
@@ -119,7 +120,7 @@ class InputController extends Controller
                         //naik
                         $nilai_aturan_1 = ($min * ($titik[1]->titikx-$titik[0]->titikx)) + $titik[0]->titikx;
                         //turun
-                        $nilai_aturan_2 = $titik[2]->titikx - ( $min * ($titik[2]->titikx-$titik[1]->titikx));
+                        $nilai_aturan_2 = $titik[3]->titikx - ( $min * ($titik[3]->titikx-$titik[2]->titikx));
                         if($nilai_aturan_1<=$nilai_aturan_2){
                             $hasil_aturan = $nilai_aturan_1;
                         }else{
@@ -144,7 +145,6 @@ class InputController extends Controller
             Data_input::find($input_baru->id)->update([
                 'hasil' => $defuzzy
             ]);
-            
             return  redirect()->route('relawan_riwayat')->with('success','Data sukses ditambahkan !');
         }else{
             return back()->withErrors(['Ada kesalahan pada saat Input.']);

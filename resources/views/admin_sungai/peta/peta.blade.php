@@ -154,9 +154,9 @@
                                 @foreach($data_input as $item)
                                 <tr>
                                     <td>{{$i}}</td>
-                                    <td><?= substr($item->created_at,8,2) ?> 
+                                    <td><?= substr($item->tanggal,8,2) ?> 
                                     <?php 
-                                    $bln = substr($item->created_at,5,2);
+                                    $bln = substr($item->tanggal,5,2);
                                     if($bln == "01"){
                                         echo "Januari";
                                     }elseif($bln == "02"){
@@ -182,17 +182,17 @@
                                     }elseif($bln == "12"){
                                         echo "Desember";
                                     }
-                                    ?> <?= substr($item->created_at,0,4) ?></td>
+                                    ?> <?= substr($item->tanggal,0,4) ?></td>
                                     <td>{{$item->username}}</td>
                                     <td>
-                                        @if($item->hasil >= 1 && $item->hasil <= 1.7)
-                                        <span class="badge badge-danger">Tercemar Berat</span>
+                                        @if($item->hasil >= 0 && $item->hasil <= 1.7)
+                                        <span class="label label-danger">Tercemar Berat</span>
                                         @elseif($item->hasil > 1.7 && $item->hasil <= 2.5)
-                                        <span class="badge badge-warning">Tercemar Sedang</span>
-                                        @elseif($item->hasil >= 2.6 && $item->hasil <= 3.2)
-                                        <span class="badge badge-info">Tercemar Ringan</span>
-                                        @elseif($item->hasil >= 3.3 && $item->hasil <= 4)
-                                        <span class="badge badge-primary">Tidak Tercemar</span>
+                                        <span class="label label-warning">Tercemar Sedang</span>
+                                        @elseif($item->hasil > 2.5 && $item->hasil <= 3.2)
+                                        <span class="label label-info" style="background-color: yellow;color:black">Tercemar Ringan</span>
+                                        @elseif($item->hasil > 3.2 && $item->hasil <= 4)
+                                        <span class="label label-primary">Tidak Tercemar</span>
                                         @endif
                                     </td>
                                     <td>
@@ -259,9 +259,9 @@
             <div class="modal-body">
                 <h5>TANGGAL</h5>
                 <p class="m-t-15 m-b-30">
-                    <?= substr($item->created_at,8,2) ?> 
+                    <?= substr($item->tanggal,8,2) ?> 
                     <?php 
-                    $bln = substr($item->created_at,5,2);
+                    $bln = substr($item->tanggal,5,2);
                     if($bln == "01"){
                         echo "Januari";
                     }elseif($bln == "02"){
@@ -287,7 +287,7 @@
                     }elseif($bln == "12"){
                         echo "Desember";
                     }
-                    ?> <?= substr($item->created_at,0,4) ?>
+                    ?> <?= substr($item->tanggal,0,4) ?>
                 </p>
                 <hr>
                 <h5>SUNGAI</h5>
@@ -313,13 +313,13 @@
                 <h5>HASIL</h5>
                 <p class="m-t-15 m-b-30">
                     @if($item->hasil >= 1 && $item->hasil <= 1.7)
-                    <span class="badge badge-danger">Tercemar Berat</span>
-                    @elseif($item->hasil >= 1.8 && $item->hasil <= 2.5)
-                    <span class="badge badge-warning">Tercemar Sedang</span>
-                    @elseif($item->hasil >= 2.6 && $item->hasil <= 3.2)
-                    <span class="badge badge-info">Tercemar Ringan</span>
-                    @elseif($item->hasil >= 3.3 && $item->hasil <= 4)
-                    <span class="badge badge-primary">Tidak Tercemar</span>
+                    <span class="label label-danger">Tercemar Berat</span>
+                    @elseif($item->hasil > 1.7 && $item->hasil <= 2.5)
+                    <span class="label label-warning">Tercemar Sedang</span>
+                    @elseif($item->hasil > 2.5 && $item->hasil <= 3.2)
+                    <span class="label label-info" style="background-color: yellow;color:black">Tercemar Ringan</span>
+                    @elseif($item->hasil > 3.2 && $item->hasil <= 4)
+                    <span class="label label-primary">Tidak Tercemar</span>
                     @endif
                 </p>
                 <hr>

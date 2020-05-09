@@ -12,34 +12,39 @@
 */
 
 Route::get('/', [
-    'uses' => 'Utama\UtamaController@index'
+	'uses' => 'Utama\UtamaController@index'
 ])->name('/');
 Route::post('logout', [
-    'as' => 'logout',
-    'uses' => 'Auth\LoginController@logout'
-  ]);
+	'as' => 'logout',
+	'uses' => 'Auth\LoginController@logout'
+]);
 Route::post('login', [
-    'as' => '',
-    'uses' => 'Auth\LoginController@login'
-  ])->name('login');
-  Route::post('logout', [
-    'as' => 'logout',
-    'uses' => 'Auth\LoginController@logout'
-  ]);
-  Route::get('/login', [
-    'uses' => 'AdminUtama\LoginController@showLoginForm'
-  ])->name('admin');
-  Route::post('/titik/sungai/{id}', 'Relawan\InputController@dasar_sungai');
-  Route::post('/titik/verif/{id}', 'AdminSungai\PetaController@verif_titik');
+	'as' => '',
+	'uses' => 'Auth\LoginController@login'
+])->name('login');
+Route::post('logout', [
+	'as' => 'logout',
+	'uses' => 'Auth\LoginController@logout'
+]);
+Route::get('/login', [
+	'uses' => 'AdminUtama\LoginController@showLoginForm'
+])->name('admin');
+Route::post('/titik/sungai/{id}', 'Relawan\InputController@dasar_sungai');
+Route::post('/titik/verif/{id}', 'AdminSungai\PetaController@verif_titik');
+Route::post('/titik/kualitas_sungai', 'Utama\UtamaController@titik');
+Route::post('/titik/filter_kualitas_sungai', 'Utama\UtamaController@filter');
+Route::post('/titik/detail_kualitas_sungai/{id}', 'Utama\UtamaController@detail_titik');
 Route::group(['middleware' => 'admin_utama'], function () {
 	Route::get('/admin_utama/beranda', 'AdminUtama\BerandaController@index')->name('admin_utama_beranda');
 	Route::get('/admin_utama/variable', 'AdminUtama\VariabelController@index')->name('admin_utama_variable');
 	Route::post('/admin_utama/variable/add', 'AdminUtama\VariabelController@store')->name('admin_utama_add_variable');
 	Route::delete('/admin_utama/variable/delete/{id}', 'AdminUtama\VariabelController@destroy')->name('admin_utama_delete_variable');
+	Route::delete('/admin_utama/himpunan/delete/{id}', 'AdminUtama\HimpunanController@destroy')->name('admin_utama_delete_himpunan');
 	Route::get('/admin_utama/himpunan/{id}', 'AdminUtama\HimpunanController@index')->name('admin_utama_himpunan');
 	Route::get('/admin_utama/himpunan/settings/{id}', 'AdminUtama\HimpunanController@settings')->name('admin_utama_himpunan_setting');
 	Route::post('/admin_utama/himpunan/add/{id}', 'AdminUtama\HimpunanController@store')->name('admin_utama_add_himpunan');
 	Route::get('/admin_utama/aturan', 'AdminUtama\AturanController@index')->name('admin_utama_aturan');
+	Route::get('/admin_utama/cetak/aturan', 'AdminUtama\AturanController@cetak')->name('cetak_admin_utama_aturan');
 	Route::post('/admin_utama/aturan/add', 'AdminUtama\AturanController@store')->name('admin_utama_add_aturan');
 	Route::get('/admin_utama/aturan/add', 'AdminUtama\AturanController@add')->name('admin_utama_add_aturan');
 	Route::delete('/admin_utama/aturan/delete/{id}', 'AdminUtama\AturanController@destroy')->name('admin_utama_delete_aturan');
@@ -62,4 +67,5 @@ Route::group(['middleware' => 'admin_sungai'], function () {
 	Route::get('/admin_sungai/users', 'AdminSungai\RelawanController@index')->name('admin_sungai_users');
 	Route::put('/admin_sungai/setuju/{id}', 'AdminSungai\PetaController@setuju')->name('admin_sungai_setuju');
 	Route::put('/admin_sungai/tolak/{id}', 'AdminSungai\PetaController@tolak')->name('admin_sungai_tolak');
+	Route::delete('/admin_sungai/riwayat/delete/{id}', 'Relawan\RelawanController@destroy')->name('delete_relawan');
 });

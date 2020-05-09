@@ -39,7 +39,7 @@
             <a class="nav-link" href="{{route('admin_utama_aturan')}}">Aturan Fuzzy</a>
         </li> 
         <li class="nav-item">
-            <a class="nav-link" href="{{route('admin_utama_sungai')}}">Admin & Sungai</a>
+            <a class="nav-link" href="{{route('admin_utama_sungai')}}">Admin & Data Sungai</a>
         </li>  
     </ul>
     <ul class="navbar-nav ml-auto">

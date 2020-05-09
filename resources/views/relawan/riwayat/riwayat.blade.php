@@ -77,14 +77,14 @@
                                     <td>{{$item->latitude}}</td>
                                     <td>{{$item->longitude}}</td>
                                     <td>
-                                        @if($item->hasil >= 1 && $item->hasil <= 1.7)
-                                        <span class="badge badge-danger">Tercemar Berat</span>
+                                        @if($item->hasil >= 0 && $item->hasil <= 1.7)
+                                        <span class="label label-danger">Tercemar Berat</span>
                                         @elseif($item->hasil > 1.7 && $item->hasil <= 2.5)
-                                        <span class="badge badge-warning">Tercemar Sedang</span>
-                                        @elseif($item->hasil >= 2.6 && $item->hasil <= 3.2)
-                                        <span class="badge badge-info">Tercemar Ringan</span>
-                                        @elseif($item->hasil >= 3.3 && $item->hasil <= 4)
-                                        <span class="badge badge-primary">Tidak Tercemar</span>
+                                        <span class="label label-warning">Tercemar Sedang</span>
+                                        @elseif($item->hasil > 2.5 && $item->hasil <= 3.2)
+                                        <span class="label label-info" style="background-color: yellow;color:black">Tercemar Ringan</span>
+                                        @elseif($item->hasil > 3.2 && $item->hasil <= 4)
+                                        <span class="label label-primary">Tidak Tercemar</span>
                                         @endif
                                     </td>
                                     <td>
@@ -186,14 +186,14 @@
                 <hr>
                 <h5>HASIL</h5>
                 <p class="m-t-15 m-b-30">
-                    @if($item->hasil >= 1 && $item->hasil <= 1.7)
-                    <span class="badge badge-danger">Tercemar Berat</span>
-                    @elseif($item->hasil >= 1.8 && $item->hasil <= 2.5)
-                    <span class="badge badge-warning">Tercemar Sedang</span>
-                    @elseif($item->hasil >= 2.6 && $item->hasil <= 3.2)
-                    <span class="badge badge-info">Tercemar Ringan</span>
-                    @elseif($item->hasil >= 3.3 && $item->hasil <= 4)
-                    <span class="badge badge-primary">Tidak Tercemar</span>
+                    @if($item->hasil >= 0 && $item->hasil <= 1.7)
+                    <span class="label label-danger">Tercemar Berat</span>
+                    @elseif($item->hasil > 1.7 && $item->hasil <= 2.5)
+                    <span class="label label-warning">Tercemar Sedang</span>
+                    @elseif($item->hasil > 2.5 && $item->hasil <= 3.2)
+                    <span class="label label-info" style="background-color: yellow;color:black">Tercemar Ringan</span>
+                    @elseif($item->hasil > 3.2 && $item->hasil <= 4)
+                    <span class="label label-primary">Tidak Tercemar</span>
                     @endif
                 </p>
                 <hr>

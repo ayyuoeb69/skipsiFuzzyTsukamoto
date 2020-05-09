@@ -17,6 +17,13 @@ class AturanController extends Controller
         
         return view('admin_utama/aturan/aturan', $data);
     }
+     public function cetak(Request $request){
+        // $this->auto_input();
+        $data['aturan'] =  Aturan::get();
+        $data['detail'] =  Detail_aturan::select('*','detail_aturan.id as detail_aturan_id')->join('himpunan', 'himpunan.id','=','detail_aturan.himpunan_id')->join('variable', 'variable.id','=','himpunan.variable_id')->get();
+        
+        return view('admin_utama/aturan/cetak_aturan', $data);
+    }
     public function add(Request $request){
         $data['variable_input'] = Variable::where('status',0)->orderBy('status','ASC')->get();
         $data['variable_output'] = Variable::where('status',1)->orderBy('status','ASC')->get();

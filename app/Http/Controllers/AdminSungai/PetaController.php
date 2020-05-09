@@ -10,7 +10,7 @@ use DB;
 class PetaController extends Controller
 {
     public function index(Request $request){
-    	$data['data_input'] = Data_input::select('*','data_input.id', 'users.id as id_users','data_input.status as status')->join('users','users.id','=','data_input.user_id')->where('data_input.sungai_id',$request->user()->sungai_id)->get();
+    	$data['data_input'] = Data_input::select('*','data_input.id', 'users.id as id_users','data_input.status as status','data_input.created_at as tanggal')->join('users','users.id','=','data_input.user_id')->where('data_input.sungai_id',$request->user()->sungai_id)->orderBy('data_input.created_at', 'DESC')->get();
     	$data['detail'] = Detail_data_input::join('variable','variable.id','=','detail_data_input.variable_id')->get();
     	$data['dasar'] = DB::table('koordinate_sungai')
         ->select('id_kel_dasar_sub', DB::raw('count(*) as total'))
